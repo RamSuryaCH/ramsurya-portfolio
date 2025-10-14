@@ -1,0 +1,150 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { FC, useState } from "react";
+import Threads from "@/components/ui/Threads";
+
+// Per design instructions, this component uses the visual style of the Osmo website
+// but with the textual content for a personal developer portfolio.
+
+const StaggeredButton: FC<{ text: string }> = ({ text }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const letters = text.split("");
+
+  return (
+    <Link
+      href="#contact"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group relative inline-block overflow-hidden whitespace-nowrap rounded-lg border-2 border-transparent bg-white px-6 py-3 sm:px-8 sm:py-4 text-center font-medium text-black transition-colors duration-300 ease-in-out hover:border-white hover:bg-transparent hover:text-white min-h-[44px] min-w-[120px] touch-manipulation"
+    >
+      {isHovered ? (
+        <div className="flex">
+          {letters.map((letter, index) => (
+            <motion.span
+              key={index}
+              variants={{
+                initial: { y: "100%" },
+                hovered: { y: 0 },
+              }}
+              initial="initial"
+              animate="hovered"
+              transition={{
+                duration: 0.3,
+                ease: "circOut",
+                delay: index * 0.03,
+              }}
+              className="inline-block"
+            >
+              {letter === " " ? "\u00A0" : letter}
+            </motion.span>
+          ))}
+        </div>
+      ) : (
+        text
+      )}
+    </Link>
+  );
+};
+
+const wordContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const wordVariants = {
+  hidden: { y: "110%", opacity: 0 },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const HeroSection = () => {
+  const headline1 = "Student Entrepreneur".split(" ");
+  const headline2 = "& Marketing Innovator".split(" ");
+
+  const totalWords = headline1.length + headline2.length;
+
+  return (
+    <main className="relative flex min-h-screen w-full items-center justify-start px-4 py-16 sm:py-24 md:px-8 overflow-hidden">
+      {/* Background Threads Animation */}
+      <div className="absolute inset-0 z-0">
+        <div className="relative w-full h-full pointer-events-auto">
+          <Threads
+            color={[1, 0.3, 0]}
+            amplitude={1.2}
+            distance={0.3}
+            enableMouseInteraction={true}
+          />
+        </div>
+      </div>
+      
+      <div className="container relative z-20 mx-auto max-w-[1200px]">
+        <div className="flex flex-col items-start text-left pointer-events-none">
+          <motion.h1
+            className="text-[32px] font-bold leading-[1.1] tracking-tighter text-foreground xs:text-[40px] sm:text-[48px] md:text-[60px] lg:text-[72px] xl:text-[90px]"
+            variants={wordContainerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="block">
+              {headline1.map((word, index) => (
+                <div key={index} className="inline-block overflow-hidden align-bottom">
+                  <motion.span
+                    className="mr-1 inline-block pb-2 xs:mr-2 sm:mr-3 md:mr-4"
+                    variants={wordVariants}
+                  >
+                    {word}
+                  </motion.span>
+                </div>
+              ))}
+            </div>
+            <div className="block">
+              {headline2.map((word, index) => (
+                <div key={index + headline1.length} className="inline-block overflow-hidden align-bottom">
+                  <motion.span
+                    className="mr-1 inline-block pb-2 xs:mr-2 sm:mr-3 md:mr-4"
+                    variants={wordVariants}
+                  >
+                    {word}
+                  </motion.span>
+                </div>
+              ))}
+            </div>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: totalWords * 0.08 + 0.2, ease: "easeOut" }}
+            className="mt-4 sm:mt-6 max-w-xl sm:max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg"
+          >
+            Aspiring cybersecurity engineer and tech enthusiast pursuing B.Tech in CSE (Cyber Security). Passionate about AI, gaming, and building impactful tech communities, with experience in organizing large-scale events and fostering innovation.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: totalWords * 0.08 + 0.5, ease: "easeOut" }}
+            className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap items-center gap-4 pointer-events-auto"
+          >
+            <StaggeredButton text="Get In Touch" />
+          </motion.div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default HeroSection;
