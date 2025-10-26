@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
+import { GlowingEffect } from "@/components/ui/GlowingEffect";
 import {
   Code2,
   Boxes,
@@ -46,14 +47,23 @@ const SkillCard = ({ name, className, icon: Icon, index }: {name: string;classNa
       initial="hidden"
       animate="visible"
       className={cn(
-        "group bg-muted rounded-2xl p-4 sm:p-6 flex flex-col items-start justify-between border border-border hover:border-border/80 transition-all duration-300 ease-in-out hover:scale-[1.02] min-h-[120px] sm:min-h-[140px]",
+        "group bg-muted rounded-2xl p-4 sm:p-6 flex flex-col items-start justify-between border border-border hover:border-border/80 transition-all duration-300 ease-in-out hover:scale-[1.02] min-h-[120px] sm:min-h-[140px] relative overflow-hidden",
         className
       )}>
 
-      <div className="mb-3 sm:mb-4">
+      <GlowingEffect
+        disabled={false}
+        proximity={100}
+        spread={30}
+        blur={8}
+        borderWidth={2}
+        movementDuration={1.5}
+      />
+
+      <div className="mb-3 sm:mb-4 relative z-10">
         <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-muted-foreground group-hover:text-foreground transition-colors duration-300" />
       </div>
-      <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-foreground leading-tight !whitespace-pre-line !whitespace-pre-line !whitespace-pre-line !whitespace-pre-line !whitespace-pre-line !whitespace-pre-line !whitespace-pre-line">{name}</h3>
+      <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-foreground leading-tight relative z-10">{name}</h3>
     </motion.div>);
 
 };
