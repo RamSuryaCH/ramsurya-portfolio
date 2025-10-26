@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Timeline } from "@/components/ui/Timeline";
+import { Timeline } from "@/components/ui/timeline";
 
 const ExperienceSection = () => {
   const timelineData = [
