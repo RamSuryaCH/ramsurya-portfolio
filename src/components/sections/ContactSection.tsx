@@ -46,6 +46,7 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const MESSAGE_MAX = 1000;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -180,9 +181,17 @@ const ContactSection = () => {
                 required
                 disabled={isSubmitting}
                 rows={5}
+                maxLength={MESSAGE_MAX}
+                aria-describedby="message-help message-counter"
                 className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent transition-colors resize-vertical disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                 placeholder="Tell me about your project idea, collaboration opportunity, or just say hello..."
               />
+              <div className="mt-2 flex items-center justify-between text-xs sm:text-sm">
+                <p id="message-help" className="text-muted-foreground">Max {MESSAGE_MAX} characters.</p>
+                <p id="message-counter" className="text-muted-foreground">
+                  {formData.message.length}/{MESSAGE_MAX}
+                </p>
+              </div>
             </div>
             
             {/* Submit Button */}
@@ -210,6 +219,8 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="flex items-center justify-center gap-2 text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 p-4 rounded-lg"
+                role="status"
+                aria-live="polite"
               >
                 <CheckCircle size={20} />
                 <span>Message sent successfully! I'll get back to you soon.</span>
@@ -221,6 +232,8 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="flex items-center justify-center gap-2 text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 p-4 rounded-lg"
+                role="alert"
+                aria-live="assertive"
               >
                 <AlertCircle size={20} />
                 <span>{errorMessage}</span>

@@ -92,6 +92,7 @@ export default function Navigation() {
                     <button
                       onClick={() => handleNavClick(item.href, item.href.replace('#', ''))}
                       className={navLinkClasses(item.href.replace('#', ''))}
+                      aria-current={activeSection === item.href.replace('#', '') ? 'page' : undefined}
                     >
                       {item.name}
                     </button>
@@ -105,7 +106,9 @@ export default function Navigation() {
                 <button
                   onClick={toggleTheme}
                   aria-label="Toggle theme"
-                  className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-300 min-h-[44px] min-w-[44px] touch-manipulation flex items-center justify-center"
+                  title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                  aria-pressed={theme === "dark"}
+                  className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-300 min-h-[44px] min-w-[44px] touch-manipulation flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-orange"
                 >
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.div

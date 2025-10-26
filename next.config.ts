@@ -5,7 +5,7 @@ const LOADER = path.resolve(__dirname, 'src/visual-edits/component-tagger-loader
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['slelguoygbfzlpylpxfs.supabase.co', 'images.unsplash.com'],
+    domains: ['slelguoygbfzlpylpxfs.supabase.co'],
   },
   experimental: {
     turbo: {
