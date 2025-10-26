@@ -1,129 +1,173 @@
 "use client";
 
 import React from 'react';
-import { motion } from "framer-motion";
-import useScrollAnimation from "@/hooks/useScrollAnimation";
-
-interface ExperienceItem {
-  company: string;
-  role: string;
-  duration: string;
-  location?: string;
-  achievements: string[];
-}
-
-const experiences: ExperienceItem[] = [
-  {
-    company: "Smartzy Edu",
-    role: "Chief Marketing Officer",
-    duration: "April 2025 - Present",
-    location: "Hyderabad, Telangana, India",
-    achievements: [
-      "Led outreach for technical courses, increasing student awareness and enrollments.",
-      "Drove community growth by facilitating active WhatsApp groups and student engagement.",
-      "Built partnerships and campaigns aligned with developer education initiatives.",
-    ],
-  },
-  {
-    company: "Microsoft Learn Student Ambassadors",
-    role: "Beta MLSA",
-    duration: "February 2025 - Present",
-    location: "Global Program",
-    achievements: [
-      "Hosted 6+ technical events in one month; rapidly promoted from Alpha to Beta.",
-      "Mentored 1,000+ students through workshops and community engagement.",
-      "Built hands-on sessions around Flutter/Dart, cloud, and AI fundamentals.",
-    ],
-  },
-  {
-    company: "SkoolSaver",
-    role: "Marketing Manager",
-    duration: "November 2024 - March 2025",
-    location: "EdTech Sector",
-    achievements: [
-      "Drove brand growth and engagement through strategic campaigns and partnerships.",
-      "Specialized in leveraging EdTech solutions to empower schools and learners.",
-      "Executed digital marketing initiatives resulting in increased user engagement.",
-    ],
-  },
-  {
-    company: "e-DAM",
-    role: "Marketing Manager & Social Media Handler",
-    duration: "June 2024 - January 2025",
-    location: "Hyderabad, Telangana, India",
-    achievements: [
-      "Managed comprehensive social media strategy and content creation.",
-      "Developed and executed marketing campaigns across multiple platforms.",
-      "Built brand presence and community engagement through strategic social media management.",
-    ],
-  },
-];
-
-const ExperienceCard = ({ experience, index }: { experience: ExperienceItem; index: number }) => {
-  const { company, role, duration, location, achievements } = experience;
-  
-  const { ref, variants } = useScrollAnimation('fadeInUp', { 
-    threshold: 0.2,
-    delay: index * 0.1,
-    staggerChildren: 0.1
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      variants={variants}
-      initial="hidden"
-      animate="visible"
-      className="rounded-2xl border border-border bg-muted p-6 sm:p-8 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-border/80 hover:scale-[1.02] hover:bg-muted/95 hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)]"
-    >
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-        <h3 className="text-lg sm:text-xl font-bold text-foreground leading-tight">{company}</h3>
-        <p className="text-xs sm:text-sm text-muted-foreground shrink-0">{duration}</p>
-      </div>
-      <p className="mt-2 text-sm sm:text-base font-medium text-accent-orange">{role}</p>
-      {location && (
-        <p className="mt-1 text-xs sm:text-sm text-muted-foreground/80">{location}</p>
-      )}
-      <ul className="mt-4 sm:mt-6 space-y-2 sm:space-y-3 list-disc list-inside text-muted-foreground text-sm sm:text-base">
-        {achievements.map((achievement, achievementIndex) => (
-          <li key={achievementIndex} className="leading-relaxed">{achievement}</li>
-        ))}
-      </ul>
-    </motion.div>
-  );
-};
+import { Timeline } from "@/components/ui/Timeline";
 
 const ExperienceSection = () => {
-  const { ref: headerRef, variants: headerVariants } = useScrollAnimation('fadeInUp', { 
-    threshold: 0.3 
-  });
+  const timelineData = [
+    {
+      title: "2025",
+      content: (
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <div className="flex items-start justify-between flex-wrap gap-2">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                Gemini Student Ambassador
+              </h3>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                August 2025 - Present
+              </span>
+            </div>
+            <p className="text-lg font-semibold text-accent-orange">Google</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Hyderabad, Telangana, India
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li>Led AI awareness initiatives, conducted workshops, and collaborated on festivals to engage students</li>
+              <li>Encouraged hands-on usage of Google Gemini tools across campus communities</li>
+              <li>Represented Google Gemini, driving conversations around AI innovation and community building</li>
+            </ul>
+          </div>
 
-  return (
-    <section id="experience" className="bg-background py-16 sm:py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={headerRef}
-          variants={headerVariants}
-          initial="hidden"
-          animate="visible"
-          className="mx-auto max-w-4xl text-center"
-        >
-          <h2 className="text-sm sm:text-base font-semibold leading-7 text-accent-orange">Professional Journey</h2>
-          <p className="mt-2 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground" style={{ letterSpacing: 'var(--tracking-tight-3)'}}>
-            Where I've Made My Mark
-          </p>
-          <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground px-4">
-            From student entrepreneur to marketing leader, here's my journey through the EdTech and technology landscape.
-          </p>
-        </motion.div>
-        <div className="mx-auto mt-12 sm:mt-16 md:mt-20 max-w-none">
-          <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
-            {experiences.map((exp, index) => (
-              <ExperienceCard key={index} experience={exp} index={index} />
-            ))}
+          <div className="space-y-3 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-start justify-between flex-wrap gap-2">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                Chief Marketing Officer
+              </h3>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                April 2025 - Present
+              </span>
+            </div>
+            <p className="text-lg font-semibold text-accent-orange">Smartzy Edu</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Hyderabad, Telangana, India
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li>Driving brand growth and engagement through strategic campaigns, digital marketing, and partnerships</li>
+              <li>Leveraging EdTech to empower schools and learners across India</li>
+              <li>Leading innovative campaigns and community building initiatives</li>
+            </ul>
+          </div>
+
+          <div className="space-y-3 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-start justify-between flex-wrap gap-2">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                Beta MLSA
+              </h3>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                February 2025 - Present
+              </span>
+            </div>
+            <p className="text-lg font-semibold text-accent-orange">Microsoft Learn Student Ambassadors</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Global Program
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li>Leading campus tech communities and helping fellow students develop technical skills</li>
+              <li>Creating robust tech communities and organizing workshops</li>
+              <li>Building career skills for the future through mentorship and events</li>
+            </ul>
           </div>
         </div>
-      </div>
+      ),
+    },
+    {
+      title: "2024-2025",
+      content: (
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <div className="flex items-start justify-between flex-wrap gap-2">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                Marketing Manager
+              </h3>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                November 2024 - March 2025
+              </span>
+            </div>
+            <p className="text-lg font-semibold text-accent-orange">SkoolSaver</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              EdTech Sector
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li>Drove brand growth and engagement through strategic campaigns and digital marketing</li>
+              <li>Developed partnerships to empower schools and learners</li>
+              <li>Leveraged EdTech solutions to create impactful educational experiences</li>
+            </ul>
+          </div>
+
+          <div className="space-y-3 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-start justify-between flex-wrap gap-2">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                Alpha MLSA
+              </h3>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                January 2025 - February 2025
+              </span>
+            </div>
+            <p className="text-lg font-semibold text-accent-orange">Microsoft Learn Student Ambassadors</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Global Program
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li>Joined global group of campus leaders eager to help fellow students</li>
+              <li>Started creating tech communities and developing technical skills</li>
+              <li>Promoted to Beta level after demonstrating leadership impact</li>
+            </ul>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "2023-2024",
+      content: (
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <div className="flex items-start justify-between flex-wrap gap-2">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                Marketing Manager
+              </h3>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                June 2024 - January 2025
+              </span>
+            </div>
+            <p className="text-lg font-semibold text-accent-orange">e-DAM</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Hyderabad, Telangana, India
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li>Managed comprehensive marketing strategy and brand positioning</li>
+              <li>Led digital marketing initiatives and campaign execution</li>
+              <li>Built strong brand presence through strategic marketing efforts</li>
+            </ul>
+          </div>
+
+          <div className="space-y-3 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-start justify-between flex-wrap gap-2">
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                Social Media Handler
+              </h3>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                September 2023 - January 2025
+              </span>
+            </div>
+            <p className="text-lg font-semibold text-accent-orange">e-DAM</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Hyderabad, Telangana, India
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li>Managed social media strategy across multiple platforms</li>
+              <li>Created engaging content and built community engagement</li>
+              <li>Developed brand presence through consistent social media management</li>
+            </ul>
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <section id="experience" className="bg-background">
+      <Timeline data={timelineData} />
     </section>
   );
 };
