@@ -13,59 +13,93 @@ import {
   GitBranch,
   Shield,
   Binary,
-  Rocket,
   Smartphone,
   Server,
-  Workflow } from
-"lucide-react";
+  Workflow,
+} from "lucide-react";
 
 const skills = [
-{ name: "Flutter", className: "md:col-span-2 md:row-span-2", icon: Smartphone },
-{ name: "Dart", className: "md:col-span-1", icon: Binary },
-{ name: "Python", className: "md:col-span-1", icon: Code2 },
-{ name: "Firebase", className: "md:row-span-2", icon: Cloud },
-{ name: "MongoDB", className: "md:col-span-1", icon: Database },
-{ name: "AWS", className: "md:col-span-2", icon: Server },
-{ name: "AI fluency", className: "md:col-span-1", icon: Cpu },
-{ name: "Prompt Engineering", className: "md:col-span-2", icon: Boxes },
-{ name: "Postman API", className: "md:col-span-1", icon: Workflow },
-{ name: "Git & GitHub", className: "md:col-span-1", icon: GitBranch },
-{ name: "Android & iOS", className: "md:col-span-2", icon: Smartphone },
-{ name: "Cyber Security (Basics)", className: "md:col-span-2", icon: Shield }];
+  {
+    area: "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]",
+    icon: <Smartphone className="h-4 w-4" />,
+    title: "Flutter & Dart",
+    description: "Building beautiful cross-platform mobile apps with Flutter's reactive framework and Dart's robust type system.",
+  },
+  {
+    area: "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]",
+    icon: <Code2 className="h-4 w-4" />,
+    title: "Python & Backend",
+    description: "Server-side development, data processing, and API integration with Python's powerful ecosystem.",
+  },
+  {
+    area: "md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]",
+    icon: <Cloud className="h-4 w-4" />,
+    title: "Firebase & Cloud Services",
+    description: "Real-time databases, authentication, cloud functions, and scalable backend infrastructure.",
+  },
+  {
+    area: "md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]",
+    icon: <Database className="h-4 w-4" />,
+    title: "MongoDB & AWS",
+    description: "NoSQL database design and cloud deployment with AWS services for production-ready apps.",
+  },
+  {
+    area: "md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]",
+    icon: <Cpu className="h-4 w-4" />,
+    title: "AI & Modern Development",
+    description: "Leveraging AI tools, prompt engineering, and modern workflows with Git, Postman, and security best practices.",
+  },
+];
 
+interface SkillCardProps {
+  area: string;
+  icon: React.ReactNode;
+  title: string;
+  description: React.ReactNode;
+  index: number;
+}
 
-const SkillCard = ({ name, className, icon: Icon, index }: {name: string;className?: string;icon: any;index: number;}) => {
+const SkillCard = ({ area, icon, title, description, index }: SkillCardProps) => {
   const { ref, variants } = useScrollAnimation('scale', {
     threshold: 0.2,
-    delay: index * 0.05
+    delay: index * 0.1
   });
 
   return (
-    <motion.div
+    <motion.li
       ref={ref}
       variants={variants}
       initial="hidden"
       animate="visible"
-      className={cn(
-        "group bg-muted rounded-2xl p-4 sm:p-6 flex flex-col items-start justify-between border border-border hover:border-border/80 transition-all duration-300 ease-in-out hover:scale-[1.02] min-h-[120px] sm:min-h-[140px] relative overflow-hidden",
-        className
-      )}>
-
-      <GlowingEffect
-        disabled={false}
-        proximity={100}
-        spread={30}
-        blur={8}
-        borderWidth={2}
-        movementDuration={1.5}
-      />
-
-      <div className="mb-3 sm:mb-4 relative z-10">
-        <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-muted-foreground group-hover:text-foreground transition-colors duration-300" />
+      className={cn("min-h-[14rem] list-none", area)}
+    >
+      <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
+        <GlowingEffect
+          spread={40}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+        />
+        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border-[0.75px] bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] md:p-6">
+          <div className="relative flex flex-1 flex-col justify-between gap-3">
+            <div className="w-fit rounded-lg border-[0.75px] border-border bg-muted p-2">
+              {icon}
+            </div>
+            <div className="space-y-3">
+              <h3 className="pt-0.5 text-xl leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-2xl md:leading-[1.875rem] text-balance text-foreground">
+                {title}
+              </h3>
+              <p className="font-sans text-sm leading-[1.125rem] md:text-base md:leading-[1.375rem] text-muted-foreground">
+                {description}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-foreground leading-tight relative z-10">{name}</h3>
-    </motion.div>);
-
+    </motion.li>
+  );
 };
 
 export default function SkillsSection() {
@@ -81,22 +115,29 @@ export default function SkillsSection() {
           variants={headerVariants}
           initial="hidden"
           animate="visible"
-          className="text-center mb-12 sm:mb-16">
-
+          className="text-center mb-12 sm:mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight-3 mb-4 text-foreground leading-tight">
             Technical Skills & Stack
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-4xl mx-auto px-4">
-            Building performant, cross-platform apps and cloud-backed experiences with Flutter/Dart, Python, Firebase, MongoDB, and AWS. Solid grounding in C/C++ with native builds via CMake and security fundamentals.
+            Building performant, cross-platform apps and cloud-backed experiences with modern technologies and frameworks.
           </p>
         </motion.div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[120px] sm:auto-rows-[140px] md:auto-rows-[12rem] gap-4 sm:gap-6">
-          {skills.map((skill, index) =>
-          <SkillCard key={skill.name} name={skill.name} className={skill.className} icon={skill.icon} index={index} />
-          )}
-        </div>
-      </div>
-    </section>);
 
+        <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
+          {skills.map((skill, index) => (
+            <SkillCard
+              key={skill.title}
+              area={skill.area}
+              icon={skill.icon}
+              title={skill.title}
+              description={skill.description}
+              index={index}
+            />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
 }
