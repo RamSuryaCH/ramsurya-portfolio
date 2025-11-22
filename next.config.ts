@@ -1,6 +1,6 @@
 import path from "node:path";
 const LOADER = path.resolve(__dirname, 'src/visual-edits/component-tagger-loader.js');
-// Orchids restart: 1758873467023
+// Orchids restart: 1761842060116
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

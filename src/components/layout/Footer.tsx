@@ -1,189 +1,104 @@
-"use client";
+'use client';
+import React from 'react';
+import type { ComponentProps, ReactNode } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
+import { GithubIcon, LinkedinIcon, TwitterIcon, MailIcon } from 'lucide-react';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import useScrollAnimation from "@/hooks/useScrollAnimation";
+interface FooterLink {
+	title: string;
+	href: string;
+	icon?: React.ComponentType<{ className?: string }>;
+}
 
-const OsmoAsteriskIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 26 26" fill="currentColor" {...props}>
-    <g transform="translate(13, 13)">
-      <rect width="2.5" height="26" x="-1.25" y="-13" />
-      <rect width="2.5" height="26" x="-1.25" y="-13" transform="rotate(45)" />
-      <rect width="2.5" height="26" x="-1.25" y="-13" transform="rotate(90)" />
-      <rect width="2.5" height="26" x="-1.25" y="-13" transform="rotate(135)" />
-    </g>
-  </svg>
-);
+interface FooterSection {
+	label: string;
+	links: FooterLink[];
+}
 
-// X (Twitter) Icon Component
-const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </svg>
-);
-
-const sitemapLinks = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
-  { href: "#education", label: "Education" },
-  { href: "#contact", label: "Contact" },
+const footerLinks: FooterSection[] = [
+	{
+		label: 'Navigation',
+		links: [
+			{ title: 'About', href: '#about' },
+			{ title: 'Experience', href: '#experience' },
+			{ title: 'Skills', href: '#skills' },
+			{ title: 'Education', href: '#education' },
+			{ title: 'Contact', href: '#contact' },
+		],
+	},
+	{
+		label: 'Connect',
+		links: [
+			{ title: 'LinkedIn', href: 'https://linkedin.com/in/ram-surya', icon: LinkedinIcon },
+			{ title: 'GitHub', href: 'https://github.com/ramsurya', icon: GithubIcon },
+			{ title: 'Twitter', href: 'https://twitter.com/ramsurya', icon: TwitterIcon },
+			{ title: 'Email', href: 'mailto:ram.surya@example.com', icon: MailIcon },
+		],
+	},
 ];
 
-const resourceLinks = [
-  { href: "https://www.linkedin.com/in/ram-surya-chelluboyina", label: "LinkedIn Profile" },
-  { href: "https://github.com/RamSuryaCH", label: "GitHub" },
-  { href: "https://x.com/RamSuryaCH", label: "X (Twitter)" },
-  { href: "https://www.instagram.com/ram.surya_ch/", label: "Instagram" },
-];
+export function Footer() {
+	return (
+		<footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
+			<div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
 
-const socialLinks = [
-  { href: "https://www.linkedin.com/in/ram-surya-chelluboyina", label: "LinkedIn" },
-  { href: "https://github.com/RamSuryaCH", label: "GitHub" },
-  { href: "https://x.com/RamSuryaCH", label: "X" },
-  { href: "https://www.instagram.com/ram.surya_ch/", label: "Instagram" },
-];
+			<div className="grid w-full gap-8 md:grid-cols-3 md:gap-12">
+				<AnimatedContainer className="space-y-4">
+					<h2 className="text-2xl font-bold">Ram Surya CH</h2>
+					<p className="text-muted-foreground text-sm mt-4">
+						© {new Date().getFullYear()} Ram Surya Chelluboyina. All rights reserved.
+					</p>
+				</AnimatedContainer>
 
-const FooterLinkColumn = ({ title, links, index }: { 
-  title: string; 
-  links: Array<{ href: string; label: string; count?: number }>; 
-  index: number;
-}) => {
-  const { ref, variants } = useScrollAnimation('fadeInUp', { 
-    threshold: 0.2,
-    delay: index * 0.1 
-  });
+				{footerLinks.map((section, index) => (
+					<AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
+						<div>
+							<h3 className="text-xs font-semibold mb-4">{section.label}</h3>
+							<ul className="text-muted-foreground space-y-2 text-sm">
+								{section.links.map((link) => (
+									<li key={link.title}>
+										<a
+											href={link.href}
+											className="hover:text-foreground inline-flex items-center transition-all duration-300"
+										>
+											{link.icon && <link.icon className="me-1 size-4" />}
+											{link.title}
+										</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					</AnimatedContainer>
+				))}
+			</div>
+		</footer>
+	);
+}
 
-  return (
-    <motion.div
-      ref={ref}
-      variants={variants}
-      initial="hidden"
-      animate="visible"
-    >
-      <h3 className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 sm:mb-5">{title}</h3>
-      <ul className="space-y-2 sm:space-y-3">
-        {links.map((link) => (
-          <li key={link.href}>
-            <Link href={link.href} className="text-sm sm:text-base text-foreground hover:opacity-70 transition-opacity flex items-center min-h-[44px] py-1 touch-manipulation">
-              {link.label}
-              {link.count && (
-                <span className="ml-1.5 rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                  {link.count}
-                </span>
-              )}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </motion.div>
-  );
+type ViewAnimationProps = {
+	delay?: number;
+	className?: ComponentProps<typeof motion.div>['className'];
+	children: ReactNode;
 };
 
-function NewsletterForm() {
-  const [firstName, setFirstName] = useState('');
-  const [email, setEmail] = useState('');
+function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationProps) {
+	const shouldReduceMotion = useReducedMotion();
 
-  const { ref, variants } = useScrollAnimation('fadeInRight', { 
-    threshold: 0.2,
-    delay: 0.4 
-  });
+	if (shouldReduceMotion) {
+		return children;
+	}
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Contact form:", { firstName, email });
-  };
-
-  return (
-    <motion.form 
-      ref={ref}
-      variants={variants}
-      initial="hidden"
-      animate="visible"
-      onSubmit={handleSubmit} 
-      className="space-y-3 sm:space-y-4"
-    >
-      <Input
-        type="text"
-        placeholder="Your name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        className="w-full rounded-md bg-muted px-4 py-4 sm:py-5 font-sans text-sm sm:text-base text-foreground placeholder:text-muted-foreground border-none ring-offset-background focus-visible:ring-2 focus-visible:ring-muted-foreground focus-visible:ring-offset-2 h-auto min-h-[44px]"
-        aria-label="Your name"
-      />
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-        <Input
-          type="email"
-          placeholder="your.email@gmail.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="flex-grow rounded-md bg-muted px-4 py-4 sm:py-5 font-sans text-sm sm:text-base text-foreground placeholder:text-muted-foreground border-none ring-offset-background focus-visible:ring-2 focus-visible:ring-muted-foreground focus-visible:ring-offset-2 h-auto min-h-[44px]"
-          aria-label="Email address"
-        />
-        <Button 
-          type="submit"
-          className="w-full shrink-0 sm:w-auto rounded-md bg-muted px-6 sm:px-8 py-4 sm:py-5 text-sm sm:text-base font-medium text-foreground hover:bg-muted/80 transition-colors h-auto min-h-[44px] touch-manipulation"
-        >
-          Connect
-        </Button>
-      </div>
-    </motion.form>
-  );
+	return (
+		<motion.div
+			initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
+			whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
+			viewport={{ once: true }}
+			transition={{ delay, duration: 0.8 }}
+			className={className}
+		>
+			{children}
+		</motion.div>
+	);
 }
 
-export default function Footer() {
-  return (
-    <footer className="relative bg-background text-foreground overflow-hidden border-t border-border/15">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-        
-        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-12 gap-x-6 sm:gap-x-8">
-          <div className="col-span-1">
-            <FooterLinkColumn title="Navigation" links={sitemapLinks} index={0} />
-          </div>
-          <div className="col-span-1">
-            <FooterLinkColumn title="Connect" links={resourceLinks} index={1} />
-          </div>
-          
-          <div className="col-span-1 sm:col-span-2 lg:col-span-2">
-            <h3 className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4 sm:mb-5">Get In Touch</h3>
-            <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">Let's connect and explore opportunities together.</p>
-            <NewsletterForm />
-          </div>
-        </div>
-
-      </div>
-      
-      <div className="relative">
-        <div className="absolute bottom-0 inset-x-0 h-full z-0 pointer-events-none">
-          <div className="container mx-auto h-full relative">
-            <div className="absolute -bottom-2 sm:-bottom-4 md:-bottom-8 left-0 text-[20vw] sm:text-[18vw] md:text-[15vw] lg:text-[13vw] xl:text-[180px] font-bold text-muted/[0.04] whitespace-nowrap">
-              <span className="hidden xs:inline">Ram Surya</span>
-              <span className="xs:hidden">RS</span>
-            </div>
-            <div className="absolute -bottom-2 sm:-bottom-4 md:-bottom-8 right-0 text-[20vw] sm:text-[18vw] md:text-[15vw] lg:text-[13vw] xl:text-[180px] text-muted/[0.04]">
-              <OsmoAsteriskIcon className="size-full" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="border-t border-border/15">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-            <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left text-xs text-muted-foreground gap-4 sm:gap-6">
-              <p className="order-2 sm:order-1">©{new Date().getFullYear()} RAM SURYA CHELLUBOYINA. ALL RIGHTS RESERVED.</p>
-              
-              <div className="flex flex-wrap justify-center sm:justify-end gap-x-3 sm:gap-x-4 gap-y-2 order-1 sm:order-2">
-                {socialLinks.map(link => (
-                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors min-h-[44px] py-2 touch-manipulation flex items-center">{link.label.toUpperCase()}</a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
+export default Footer;

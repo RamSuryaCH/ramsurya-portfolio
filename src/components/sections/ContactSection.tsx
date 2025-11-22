@@ -2,11 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { motion } from "framer-motion";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
-import { Mail, Linkedin, Phone, Github, Instagram, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, Linkedin, Phone, Github, Instagram } from 'lucide-react';
+import CenteredFeedbackDrawer from '@/components/ui/centered-feedback-drawer';
 
 const avatarImages = [
   "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/1754841114012-3nxrhtwxsxf.jpeg",
@@ -21,12 +20,6 @@ const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  message: string;
-}
-
 const ContactSection = () => {
   const { ref: containerRef, variants: containerVariants } = useScrollAnimation('fadeInUp', { 
     threshold: 0.3,
@@ -37,66 +30,6 @@ const ContactSection = () => {
     threshold: 0.3,
     delay: 0.4 
   });
-
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
-  const MESSAGE_MAX = 1000;
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear error status when user starts typing
-    if (submitStatus === 'error') {
-      setSubmitStatus('idle');
-      setErrorMessage('');
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setErrorMessage('');
-
-    try {
-      const response = await fetch('/api/contact-messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message');
-      }
-
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
-
-    } catch (error) {
-      setSubmitStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <section id="contact" className="bg-background py-16 sm:py-24 md:py-32">
@@ -127,119 +60,14 @@ const ContactSection = () => {
           <p className="ml-3 sm:ml-4 text-xs sm:text-sm text-muted-foreground">Join the growing network</p>
         </div>
 
-        {/* Contact Form */}
+        {/* Contact Drawer Button */}
         <motion.div
-          className="max-w-2xl mx-auto mb-12 sm:mb-16"
+          className="flex justify-center mb-12 sm:mb-16"
           variants={ctaVariants}
           initial="hidden"
           animate="visible"
         >
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="text-left">
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] touch-manipulation"
-                  placeholder="John Doe"
-                />
-              </div>
-              <div className="text-left">
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] touch-manipulation"
-                  placeholder="john@example.com"
-                />
-              </div>
-            </div>
-            <div className="text-left">
-              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                required
-                disabled={isSubmitting}
-                rows={5}
-                maxLength={MESSAGE_MAX}
-                aria-describedby="message-help message-counter"
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent transition-colors resize-vertical disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
-                placeholder="Tell me about your project idea, collaboration opportunity, or just say hello..."
-              />
-              <div className="mt-2 flex items-center justify-between text-xs sm:text-sm">
-                <p id="message-help" className="text-muted-foreground">Max {MESSAGE_MAX} characters.</p>
-                <p id="message-counter" className="text-muted-foreground">
-                  {formData.message.length}/{MESSAGE_MAX}
-                </p>
-              </div>
-            </div>
-            
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              disabled={isSubmitting || !formData.name.trim() || !formData.email.trim() || !formData.message.trim()}
-              className="w-full sm:w-auto bg-accent-orange hover:bg-orange-600 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] touch-manipulation flex items-center justify-center gap-2"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                <>
-                  <Send size={18} />
-                  Send Message
-                </>
-              )}
-            </Button>
-
-            {/* Status Messages */}
-            {submitStatus === 'success' && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center justify-center gap-2 text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 p-4 rounded-lg"
-                role="status"
-                aria-live="polite"
-              >
-                <CheckCircle size={20} />
-                <span>Message sent successfully! I'll get back to you soon.</span>
-              </motion.div>
-            )}
-
-            {submitStatus === 'error' && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center justify-center gap-2 text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 p-4 rounded-lg"
-                role="alert"
-                aria-live="assertive"
-              >
-                <AlertCircle size={20} />
-                <span>{errorMessage}</span>
-              </motion.div>
-            )}
-          </form>
+          <CenteredFeedbackDrawer />
         </motion.div>
 
         <motion.div

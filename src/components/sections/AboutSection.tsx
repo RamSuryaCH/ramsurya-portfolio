@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
+import TiltedCard from "@/components/ui/TiltedCard";
 
 const AboutSection = () => {
   const verticalTitle = "About me";
@@ -52,12 +52,18 @@ const AboutSection = () => {
                   animate="visible"
                   className="flex-shrink-0"
                 >
-                  <Image
-                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/1754721562928-k2i74ecq9ac.png"
-                    alt="Portrait of Ram Surya Chelluboyina"
-                    width={144}
-                    height={144}
-                    className="rounded-full object-cover w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 border-2 border-border"
+                  <TiltedCard
+                    imageSrc="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/1754721562928-k2i74ecq9ac.png"
+                    altText="Portrait of Ram Surya Chelluboyina"
+                    captionText="Ram Surya"
+                    containerHeight="180px"
+                    containerWidth="180px"
+                    imageHeight="180px"
+                    imageWidth="180px"
+                    scaleOnHover={1.08}
+                    rotateAmplitude={12}
+                    showMobileWarning={false}
+                    showTooltip={true}
                   />
                 </motion.div>
                 <motion.div
