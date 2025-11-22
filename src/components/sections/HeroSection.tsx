@@ -167,7 +167,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: totalWords * 0.08 + 0.2, ease: "easeOut" }}
             className="mt-4 sm:mt-6 max-w-xl sm:max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg"
           >
-            Aspiring cybersecurity engineer and tech enthusiast pursuing B.Tech in CSE (Cyber Security). Passionate about AI, gaming, and building impactful tech communities, with experience in organizing large-scale events and fostering innovation.
+            Tech community builder and cybersecurity enthusiast, currently pursuing a B.Tech in Computer Science. Passionate about AI, gaming, and empowering changemakers through hands-on innovation. Experienced in leading impactful events and building vibrant communities.
           </motion.p>
 
           <motion.div
