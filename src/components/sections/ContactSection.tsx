@@ -87,7 +87,7 @@ const ContactSection = () => {
           </Link>
           
           <Link 
-            href="https://www.linkedin.com/in/ram-surya-chelluboyina"
+            href="http://www.linkedin.com/in/ram-surya-chelluboyina"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-accent-orange text-white hover:bg-orange-600 rounded-lg px-4 sm:px-6 h-12 sm:h-12 text-sm sm:text-base font-medium transition-transform duration-300 ease-in-out hover:scale-[1.02] min-h-[44px] touch-manipulation"
@@ -132,7 +132,7 @@ const ContactSection = () => {
         <div className="max-w-md mx-auto text-center space-y-3 sm:space-y-4">
           <div className="flex items-center justify-center gap-2 text-muted-foreground">
             <Phone size={14} className="sm:w-4 sm:h-4" />
-            <span className="text-xs sm:text-sm">7382424818</span>
+            <span className="text-xs sm:text-sm">7382424818 (Home)</span>
           </div>
           <div className="flex items-center justify-center gap-2 text-muted-foreground">
             <Mail size={14} className="sm:w-4 sm:h-4" />
@@ -141,6 +141,14 @@ const ContactSection = () => {
           <p className="text-xs sm:text-sm text-muted-foreground">
             📍 Hyderabad, Telangana, India
           </p>
+          <Link 
+            href="https://rschelluboyina.vercel.app/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-xs sm:text-sm text-accent-orange hover:underline"
+          >
+            🌐 rschelluboyina.vercel.app
+          </Link>
         </div>
       </motion.div>
     </section>

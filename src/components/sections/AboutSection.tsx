@@ -74,9 +74,9 @@ const AboutSection = () => {
                   className="flex-1"
                 >
                   <h3 className="text-2xl sm:text-3xl font-bold tracking-tight-2 text-foreground">Ram Surya Chelluboyina</h3>
-                  <p className="text-muted-foreground mt-1 mb-3 sm:mb-4 text-sm sm:text-base">AI Enthusiast • B.Tech CSE (Cyber Security) • Microsoft Learn Student Ambassador (Beta)</p>
+                  <p className="text-muted-foreground mt-1 mb-3 sm:mb-4 text-sm sm:text-base">Google Gemini & Microsoft Student Ambassador | .NET Conf 2025 Hyd Organizer | AWS Cloud Club Captain | Swift Cloud AI Enthusiast</p>
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                    I'm an AI enthusiast and B.Tech CSE (Cyber Security) student who builds real-world products and communities. As an MLSA (Beta) and CMO at Smartzy Edu, I've hosted 6+ technical events in a month and helped 1,000+ students grow their skills. Technically, I work across Flutter/Dart, Python, Firebase, MongoDB, and AWS—shipping performant cross‑platform apps like e‑DAM and Halt‑NPC with native C/CMake optimizations.
+                    I am a dynamic Marketing Leader and Microsoft Learn Student Ambassador driving transformative growth in EdTech by blending advanced technical knowledge with strategic marketing expertise. As Chief Marketing Officer at Smartzy Edu and a certified cybersecurity professional, I excel at leading innovative campaigns, building vibrant tech communities, and leveraging cloud platforms like AWS to empower learners and educational institutions. Passionate about pushing boundaries and creating disruptive solutions, I am committed to accelerating digital transformation and unlocking potential through purpose-driven marketing and technology innovation.
                   </p>
                   <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3">
                     <Link href="#education" className="inline-flex items-center justify-center rounded-lg bg-foreground text-background hover:bg-foreground/90 px-5 py-3 text-sm font-medium transition-transform hover:scale-[1.02]">

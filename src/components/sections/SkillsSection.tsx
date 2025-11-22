@@ -5,49 +5,44 @@ import { motion } from "framer-motion";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
 import { GlowingEffect } from "@/components/ui/GlowingEffect";
 import {
-  Code2,
-  Boxes,
-  Cloud,
-  Database,
-  Cpu,
-  GitBranch,
-  Shield,
-  Binary,
-  Smartphone,
-  Server,
-  Workflow,
+  Users,
+  Megaphone,
+  Target,
+  TrendingUp,
+  Lightbulb,
+  Heart,
 } from "lucide-react";
 
 const skills = [
   {
     area: "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]",
-    icon: <Smartphone className="h-4 w-4" />,
-    title: "Flutter & Dart",
-    description: "Building beautiful cross-platform mobile apps with Flutter's reactive framework and Dart's robust type system.",
+    icon: <Users className="h-4 w-4" />,
+    title: "Leadership",
+    description: "Leading tech communities, organizing events, and driving transformative growth in EdTech with strategic vision.",
   },
   {
     area: "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]",
-    icon: <Code2 className="h-4 w-4" />,
-    title: "Python & Backend",
-    description: "Server-side development, data processing, and API integration with Python's powerful ecosystem.",
+    icon: <Heart className="h-4 w-4" />,
+    title: "Collaborative Leadership",
+    description: "Building vibrant communities, mentoring students, and fostering collaboration across technical and marketing teams.",
   },
   {
     area: "md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]",
-    icon: <Cloud className="h-4 w-4" />,
-    title: "Firebase & Cloud Services",
-    description: "Real-time databases, authentication, cloud functions, and scalable backend infrastructure.",
+    icon: <Lightbulb className="h-4 w-4" />,
+    title: "Knowledge Sharing",
+    description: "Conducting workshops, AI awareness initiatives, and empowering 1,000+ students through technical training and mentorship.",
   },
   {
     area: "md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]",
-    icon: <Database className="h-4 w-4" />,
-    title: "MongoDB & AWS",
-    description: "NoSQL database design and cloud deployment with AWS services for production-ready apps.",
+    icon: <Megaphone className="h-4 w-4" />,
+    title: "Strategic Marketing",
+    description: "Digital marketing campaigns, brand positioning, and growth strategies that drive engagement and business impact.",
   },
   {
     area: "md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]",
-    icon: <Cpu className="h-4 w-4" />,
-    title: "AI & Modern Development",
-    description: "Leveraging AI tools, prompt engineering, and modern workflows with Git, Postman, and security best practices.",
+    icon: <Target className="h-4 w-4" />,
+    title: "Community Building & Innovation",
+    description: "Creating disruptive solutions, organizing 6+ technical events monthly, and building purpose-driven tech communities.",
   },
 ];
 
@@ -118,10 +113,10 @@ export default function SkillsSection() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight-3 mb-4 text-foreground leading-tight">
-            Technical Skills & Stack
+            Top Skills & Expertise
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-4xl mx-auto px-4">
-            Building performant, cross-platform apps and cloud-backed experiences with modern technologies and frameworks.
+            Leading with vision, collaborating with purpose, and sharing knowledge to drive transformative growth.
           </p>
         </motion.div>
 

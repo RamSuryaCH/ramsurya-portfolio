@@ -8,7 +8,7 @@ import { Timeline } from "@/components/ui/timeline";
 
 const educationData = [
   {
-    title: '2027 - 2023',
+    title: '2027',
     content: (
       <div className="flex flex-col gap-4">
         <div className="flex items-start gap-4 bg-muted p-6 rounded-2xl border border-border">
@@ -17,18 +17,18 @@ const educationData = [
           </div>
           <div>
             <h3 className="text-xl font-semibold text-foreground">Institute of Aeronautical Engineering</h3>
-            <p className="text-base text-muted-foreground mt-1">B.Tech CSE (Cyber Security)</p>
+            <p className="text-base text-muted-foreground mt-1">Bachelor of Technology - BTech</p>
             <p className="mt-4 text-base leading-7 text-muted-foreground">
-              Pursuing Computer Science & Engineering with specialization in Cyber Security. Active in technical communities and student programs; focused on AI, cloud and security fundamentals.
+              Pursuing Computer Science & Engineering degree. Active participant in Microsoft Learn Student Ambassadors program, AWS Cloud Club, and Google Gemini initiatives. Leading tech communities and organizing large-scale developer events.
             </p>
-            <p className="mt-4 text-sm text-muted-foreground font-medium">Expected 2027</p>
+            <p className="mt-4 text-sm text-muted-foreground font-medium">2023 - 2027</p>
           </div>
         </div>
       </div>
     ),
   },
   {
-    title: '2023 - 2021',
+    title: '2023',
     content: (
       <div className="flex flex-col gap-4">
         <div className="flex items-start gap-4 bg-muted p-6 rounded-2xl border border-border">
@@ -36,32 +36,12 @@ const educationData = [
             <GraduationCap className="h-6 w-6 text-foreground" />
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-foreground">Sri Shirdi Sai Junior College, Rajahmundry</h3>
-            <p className="text-base text-muted-foreground mt-1">Intermediate (MPC)</p>
+            <h3 className="text-xl font-semibold text-foreground">Higher Secondary Education</h3>
+            <p className="text-base text-muted-foreground mt-1">Intermediate</p>
             <p className="mt-4 text-base leading-7 text-muted-foreground">
-              Completed intermediate education in Mathematics, Physics, and Chemistry, building a strong foundation in science and analytical thinking.
+              Completed higher secondary education building foundation for technical career path.
             </p>
-            <p className="mt-4 text-sm text-muted-foreground font-medium">July 2021 - March 2023</p>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: '2021 - 2020',
-    content: (
-      <div className="flex flex-col gap-4">
-        <div className="flex items-start gap-4 bg-muted p-6 rounded-2xl border border-border">
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-border">
-            <School className="h-6 w-6 text-foreground" />
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-foreground">Tirumala Proactive High School, Rajahmundry</h3>
-            <p className="text-base text-muted-foreground mt-1">Secondary Education</p>
-            <p className="mt-4 text-base leading-7 text-muted-foreground">
-              Completed high school education with a focus on core subjects and extracurricular activities.
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground font-medium">July 2020 - June 2021</p>
+            <p className="mt-4 text-sm text-muted-foreground font-medium">Completed 2023</p>
           </div>
         </div>
       </div>
@@ -89,7 +69,7 @@ const certificationsData = [
   {
     icon: BookOpen,
     institution: 'Frost Hacks',
-    degree: 'Participant',
+    degree: 'Frost Hacks Participant',
     period: '2024',
     description:
       'Active participant in hackathon events, demonstrating problem-solving skills and collaborative development in competitive environments.',
@@ -101,14 +81,6 @@ const certificationsData = [
     period: '2024',
     description:
       'Learned the fundamentals of Model Context Protocol (MCP) for building context-aware AI applications and integrations.',
-  },
-  {
-    icon: Award,
-    institution: 'Microsoft IDC',
-    degree: 'Gen AI Summit',
-    period: '2024',
-    description:
-      'Attended exclusive AI summit at Microsoft India Development Center, gaining insights into cutting-edge AI technologies and industry applications.',
   },
 ];
 
@@ -194,7 +166,7 @@ const EducationSection = () => {
             Certifications
           </h2>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground px-4">
-            Professional certifications and achievements that showcase my expertise.
+            Professional certifications and achievements that showcase expertise.
           </p>
         </motion.div>
         <div className="mx-auto mt-12 sm:mt-16 md:mt-20 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 xl:grid-cols-3">
