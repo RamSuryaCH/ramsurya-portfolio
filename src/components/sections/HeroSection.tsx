@@ -114,8 +114,8 @@ const wordVariants = {
 };
 
 const HeroSection = () => {
-  const headline1 = "Student Entrepreneur".split(" ");
-  const headline2 = "& Marketing Innovator".split(" ");
+  const headline1 = "Every step forward".split(" ");
+  const headline2 = "creates the path others dare to follow.".split(" ");
 
   const totalWords = headline1.length + headline2.length;
 
