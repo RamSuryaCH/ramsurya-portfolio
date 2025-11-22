@@ -19,7 +19,7 @@ function FloatingPaths({ position }: { position: number }) {
   }));
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute inset-0 pointer-events-none opacity-40">
       <svg
         className="w-full h-full text-slate-950 dark:text-white"
         viewBox="0 0 696 316"
@@ -32,11 +32,11 @@ function FloatingPaths({ position }: { position: number }) {
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={0.1 + path.id * 0.03}
+            strokeOpacity={0.08 + path.id * 0.02}
             initial={{ pathLength: 0.3, opacity: 0.6 }}
             animate={{
               pathLength: 1,
-              opacity: [0.3, 0.6, 0.3],
+              opacity: [0.3, 0.5, 0.3],
               pathOffset: [0, 1, 0],
             }}
             transition={{
@@ -120,26 +120,29 @@ const HeroSection = () => {
   const totalWords = headline1.length + headline2.length;
 
   return (
-    <main className="relative flex min-h-screen w-full items-center justify-start px-4 py-16 sm:py-24 md:px-8 overflow-hidden bg-white dark:bg-neutral-950">
-      {/* Background Paths Animation */}
-      <div className="absolute inset-0 z-0">
+    <main className="relative flex min-h-screen w-full items-center justify-center px-4 py-16 sm:py-24 md:px-8 overflow-hidden bg-white dark:bg-neutral-950">
+      {/* Background Paths Animation - Reduced opacity for better readability */}
+      <div className="absolute inset-0 z-0 opacity-60">
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
       </div>
       
+      {/* Subtle gradient overlay for text readability */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-background/30 to-transparent" />
+      
       <div className="container relative z-20 mx-auto max-w-[1200px]">
-        <div className="flex flex-col items-start text-left pointer-events-none">
+        <div className="flex flex-col items-center text-center pointer-events-none">
           <motion.h1
-            className="text-[32px] font-bold leading-[1.1] tracking-tighter text-foreground xs:text-[40px] sm:text-[48px] md:text-[60px] lg:text-[72px] xl:text-[90px]"
+            className="text-[36px] font-bold leading-[1.15] tracking-tighter text-foreground xs:text-[44px] sm:text-[52px] md:text-[68px] lg:text-[80px] xl:text-[96px] max-w-5xl"
             variants={wordContainerVariants}
             initial="hidden"
             animate="visible"
           >
-            <div className="block">
+            <div className="block mb-2">
               {headline1.map((word, index) => (
                 <div key={index} className="inline-block overflow-hidden align-bottom">
                   <motion.span
-                    className="mr-1 inline-block pb-2 xs:mr-2 sm:mr-3 md:mr-4"
+                    className="mr-2 inline-block pb-2 xs:mr-3 sm:mr-4 md:mr-5"
                     variants={wordVariants}
                   >
                     {word}
@@ -151,7 +154,7 @@ const HeroSection = () => {
               {headline2.map((word, index) => (
                 <div key={index + headline1.length} className="inline-block overflow-hidden align-bottom">
                   <motion.span
-                    className="mr-1 inline-block pb-2 xs:mr-2 sm:mr-3 md:mr-4"
+                    className="mr-2 inline-block pb-2 xs:mr-3 sm:mr-4 md:mr-5"
                     variants={wordVariants}
                   >
                     {word}
@@ -165,7 +168,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: totalWords * 0.08 + 0.2, ease: "easeOut" }}
-            className="mt-4 sm:mt-6 max-w-xl sm:max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg"
+            className="mt-6 sm:mt-8 max-w-xl sm:max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg"
           >
             Aspiring cybersecurity engineer and tech enthusiast pursuing B.Tech in CSE (Cyber Security). Passionate about AI, gaming, and building impactful tech communities, with experience in organizing large-scale events and fostering innovation.
           </motion.p>
@@ -174,7 +177,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: totalWords * 0.08 + 0.5, ease: "easeOut" }}
-            className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap items-center gap-4 pointer-events-auto"
+            className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap items-center justify-center gap-4 pointer-events-auto"
           >
             <StaggeredButton text="Get In Touch" />
           </motion.div>
