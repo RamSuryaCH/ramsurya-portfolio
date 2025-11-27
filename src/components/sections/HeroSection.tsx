@@ -114,8 +114,8 @@ const wordVariants = {
 };
 
 const HeroSection = () => {
-  const headline1 = "Progress becomes the path—".split(" ");
-  const headline2 = "daring others to follow".split(" ");
+  const headline1 = "Hello, I'm".split(" ");
+  const headline2 = "Ram Surya".split(" ");
 
   const totalWords = headline1.length + headline2.length;
 
@@ -129,6 +129,18 @@ const HeroSection = () => {
       
       <div className="container relative z-20 mx-auto max-w-[1200px]">
         <div className="flex flex-col items-start text-left pointer-events-none">
+          {/* Tagline above headline */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mb-4 sm:mb-6"
+          >
+            <p className="text-xs sm:text-sm md:text-base font-medium tracking-wide text-muted-foreground uppercase">
+              Progress becomes the path—daring others to follow
+            </p>
+          </motion.div>
+
           <motion.h1
             className="text-[32px] font-bold leading-[1.1] tracking-tighter text-foreground xs:text-[40px] sm:text-[48px] md:text-[60px] lg:text-[72px] xl:text-[90px]"
             variants={wordContainerVariants}
