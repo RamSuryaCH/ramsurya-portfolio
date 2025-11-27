@@ -75,8 +75,8 @@ const AboutSection = () => {
                 >
                   <h3 className="text-2xl sm:text-3xl font-bold tracking-tight-2 text-foreground">Ram Surya Chelluboyina</h3>
                   <p className="text-muted-foreground mt-1 mb-3 sm:mb-4 text-sm sm:text-base">Google Gemini & Microsoft Student Ambassador | .NET Conf 2025 Hyd Organizer | AWS Cloud Club Captain | Swift Cloud AI Enthusiast</p>
-                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                    I am a dynamic Marketing Leader and Microsoft Learn Student Ambassador driving transformative growth in EdTech by blending advanced technical knowledge with strategic marketing expertise. As Chief Marketing Officer at Smartzy Edu and a certified cybersecurity professional, I excel at leading innovative campaigns, building vibrant tech communities, and leveraging cloud platforms like AWS to empower learners and educational institutions. Passionate about pushing boundaries and creating disruptive solutions, I am committed to accelerating digital transformation and unlocking potential through purpose-driven marketing and technology innovation.
+                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                    Full-stack developer building AI systems & developer communities. AWS Cloud Club Captain | Google Gemini & Microsoft Student Ambassador | AI-fluent innovator shipping production systems with Generative AI.{'\n\n'}Ship fast. Scale impact.{'\n\n'}Stack: AI Fluency | Node.js | Swift | AWS | Azure | Gemini Pro | MongoDB
                   </p>
                   <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3">
                     <Link href="#education" className="inline-flex items-center justify-center rounded-lg bg-foreground text-background hover:bg-foreground/90 px-5 py-3 text-sm font-medium transition-transform hover:scale-[1.02]">
