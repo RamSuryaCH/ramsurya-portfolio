@@ -5,44 +5,44 @@ import { motion } from "framer-motion";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
 import { GlowingEffect } from "@/components/ui/GlowingEffect";
 import {
+  Code2,
+  Cloud,
+  Sparkles,
   Users,
-  Megaphone,
-  Target,
-  TrendingUp,
-  Lightbulb,
-  Heart,
+  Layers,
+  Database,
 } from "lucide-react";
 
 const skills = [
   {
     area: "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]",
-    icon: <Users className="h-4 w-4" />,
-    title: "Leadership",
-    description: "Leading tech communities, organizing events, and driving transformative growth in EdTech with strategic vision.",
+    icon: <Code2 className="h-4 w-4" />,
+    title: "Full-Stack Development",
+    description: "Building production systems with Node.js, Next.js, Swift, and modern web frameworks. Strong foundation in JavaScript/TypeScript ecosystems.",
   },
   {
     area: "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]",
-    icon: <Heart className="h-4 w-4" />,
-    title: "Collaborative Leadership",
-    description: "Building vibrant communities, mentoring students, and fostering collaboration across technical and marketing teams.",
+    icon: <Sparkles className="h-4 w-4" />,
+    title: "AI Integration",
+    description: "Shipping AI-powered applications with Gemini Pro, LLM APIs, and Generative AI. Experience building context-aware intelligent systems.",
   },
   {
     area: "md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]",
-    icon: <Lightbulb className="h-4 w-4" />,
-    title: "Knowledge Sharing",
-    description: "Conducting workshops, AI awareness initiatives, and empowering 1,000+ students through technical training and mentorship.",
+    icon: <Cloud className="h-4 w-4" />,
+    title: "Cloud Architecture",
+    description: "Deploying scalable applications on AWS and Azure. Experienced with serverless functions, cloud databases, and DevOps practices.",
   },
   {
     area: "md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]",
-    icon: <Megaphone className="h-4 w-4" />,
-    title: "Strategic Marketing",
-    description: "Digital marketing campaigns, brand positioning, and growth strategies that drive engagement and business impact.",
+    icon: <Database className="h-4 w-4" />,
+    title: "Database & APIs",
+    description: "Designing RESTful APIs and working with MongoDB, PostgreSQL, and cloud databases. Strong understanding of data modeling and optimization.",
   },
   {
     area: "md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]",
-    icon: <Target className="h-4 w-4" />,
-    title: "Community Building & Innovation",
-    description: "Creating disruptive solutions, organizing 6+ technical events monthly, and building purpose-driven tech communities.",
+    icon: <Users className="h-4 w-4" />,
+    title: "Developer Community Leadership",
+    description: "Leading tech communities, organizing developer events, conducting technical workshops, and mentoring fellow developers in modern technologies.",
   },
 ];
 
@@ -113,10 +113,10 @@ export default function SkillsSection() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight-3 mb-4 text-foreground leading-tight">
-            Top Skills & Expertise
+            Technical Skills & Expertise
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-4xl mx-auto px-4">
-            Leading with vision, collaborating with purpose, and sharing knowledge to drive transformative growth.
+            Full-stack developer with AI fluency, cloud expertise, and passion for building production systems.
           </p>
         </motion.div>
 
